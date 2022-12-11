@@ -33,12 +33,12 @@ body {
 }
 
 .card {
-    width: 35rem;
+    width: 50rem;
     border-color:  #fefaef !important;
 }
 
 .row {
-    height: 70vh;
+    height: 60vh;
 }
 
 .quiz-card {
@@ -53,20 +53,18 @@ body {
 .question-footer {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     border-top: 1px solid rgba(0,0,0,0.4);
     padding-top: 12px;
+    position: relative;
+    top: 175px;
 }
 
-.arrows {
-    background-color: #fefaef;
-    display: flex;
-    padding-left: 185px !important;
-    justify-content: space-between;
-    padding-top: 8px;
+.quiz-answer:hover {
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.05);
 }
 
-.arrows img{
-    height: 30px;
-    background-color: #dadff2;
-    border-radius: 100%;
+.bg-danger, .bg-success {
+    color: white;
 }

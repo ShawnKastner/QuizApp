@@ -79,7 +79,39 @@ let questions = [{
     'right_answer': 1,
 }]
 
+let currentQuestion = 0;
 
 
+function init() {
+    document.getElementById('all-questions').innerHTML = questions.length;
 
+    showQuestion();
+}
 
+function showQuestion() {
+    let question = questions[currentQuestion];
+
+    document.getElementById('questiontext').innerHTML = question['question'];
+    document.getElementById('answer_1').innerHTML = question['answer_1'];
+    document.getElementById('answer_2').innerHTML = question['answer_2'];
+    document.getElementById('answer_3').innerHTML = question['answer_3'];
+    document.getElementById('answer_4').innerHTML = question['answer_4'];
+}
+
+function answer(selection) {
+    let question = questions[currentQuestion]; // greift auf die 0. frage zu
+    console.log('Selected answer is' , selection); //gibt die Variable selection und greift auf das angeklickte feld zu
+    let selectedQuestionNumber = selection.slice(-1); //erstellt variable und nimmt von dem jeweiligem angeklickten feld den letzten buchstaben bzw die Nummer und kopiert sie in die Variable
+    console.log('selectedQuestionNumber is', selectedQuestionNumber)//gibt die "einkopierte" Nummer aus der Console raus
+    console.log('Current question is', question['right_answer']) //gibt die richtige Nummer der Antwort aus der console raus
+
+    let idOfRightAnswer = `answer_${question['right_answer']}`;
+
+    if(selectedQuestionNumber == question['right_answer']) {
+        document.getElementById(selection).parentNode.classList.add('bg-success');
+    } else {
+        document.getElementById(selection).parentNode.classList.add('bg-danger');
+        document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
+    }
+    document.getElementById('next-button').disabled = false;
+}
