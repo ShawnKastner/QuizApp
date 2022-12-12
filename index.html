@@ -22,67 +22,76 @@
 
 <body onload="init()">
     <div class="container">
+        <div id="tropy" class="finished-tropy" style="display: none">
+            <img src="img/tropy.png" style="height: 270px">
+        </div>
         <div class="card mb-3">
             <div class="row g-0">
 
                 <div class="logo col-md-4">
-                    <img src="img/logo.png" class="img-fluid rounded-start">
-                    <div class="category">
-                        <span><b>Das große <br> Hundequiz</b></span>
-                    </div>
+                    <img src="img/logo3.png" class="img-fluid rounded-start">
                 </div>
                 <div class="col-md-8">
 
-                    <div class="card-body" id="show-result" style="display: none">
+                    <div class="card-body height-60vh space-between" id="show-result" style="display: none">
                         <div class="width-100 text-center">
-                            <img src="img/brain result.png" style="width:80px; height: 80px",>
+                            <img src="img/dogbg.png" style="width:80px; height: 80px" ,>
                         </div>
                         <div class="width-100 text-center">
-                            <span><b>Abgeschlossen</b></span>
-                            <span>Du hast <b id="points">xxx</b> von <b id="all-points">xxx</b> Punkte</span>
+                            <span><b>Hundequiz beendet!</b></span>
+                        </div>
+                        <div class="width-100 text-center">
+                            <span>Du hast <b id="points">xxx</b> von <b id="all-points">xxx</b> Punkten erreicht!</span>
+                        </div>
+                        <div>
+                            <button onclick="restart()" type="button" class="btn btn-primary btn-row" id="restart-button">Neustart</button>
                         </div>
                     </div>
-                
 
-                <div id="question-body">
-                    <div class="card-body">
-                        <h5 class="card-title" id="questiontext">Frage</h5>
-                        <p class="card-text"></p>
-                    </div>
-                    <div class="card quiz-card mb-2">
-                        <div class="card-body quiz-answer" id="answer_1" onclick="answer('answer_1')">
-                            Antwort
-                        </div>
 
-                    </div>
-                    <div class="card quiz-card mb-2">
-                        <div class="card-body quiz-answer" id="answer_2" onclick="answer('answer_2')">
-                            Antwort
+                    <div id="question-body">
+                        <div class="card-body text-center">
+                            <h5 class="card-title" id="questiontext">Frage</h5>
+                            <p class="card-text"></p>
                         </div>
+                        <div class="card quiz-card mb-2">
+                            <div class="card-body quiz-answer" id="answer_1" onclick="answer('answer_1')">
+                                Antwort
+                            </div>
 
-                    </div>
-                    <div class="card quiz-card mb-2">
-                        <div class="card-body quiz-answer" id="answer_3" onclick="answer('answer_3')">
-                            Antwort
                         </div>
+                        <div class="card quiz-card mb-2">
+                            <div class="card-body quiz-answer" id="answer_2" onclick="answer('answer_2')">
+                                Antwort
+                            </div>
 
-                    </div>
-                    <div class="card quiz-card mb-2">
-                        <div class="card-body quiz-answer" id="answer_4" onclick="answer('answer_4')">
-                            Antwort
                         </div>
-                    </div>
-                    <div class="question-footer">
-                        <span>
-                            <b id="question-number">1 </b>von <b id="all-questions">5 </b>Fragen
-                        </span>
-                        <button onclick="nextQuestion()" type="button" class="btn btn-primary" id="next-button"
-                            disabled>Nächste Frage</button>
+                        <div class="card quiz-card mb-2">
+                            <div class="card-body quiz-answer" id="answer_3" onclick="answer('answer_3')">
+                                Antwort
+                            </div>
+
+                        </div>
+                        <div class="card quiz-card mb-2">
+                            <div class="card-body quiz-answer" id="answer_4" onclick="answer('answer_4')">
+                                Antwort
+                            </div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" id="progress-bar" role="progressbar" style="width: 0%;">25%</div>
+                          </div>
+                        <div class="question-footer">
+                            
+                            <span>
+                                <b id="question-number">1 </b>von <b id="all-questions">5 </b>Fragen
+                            </span>
+                            <button onclick="nextQuestion()" type="button" class="btn btn-primary" id="next-button"
+                                disabled>Nächste Frage</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
 </body>

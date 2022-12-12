@@ -92,11 +92,18 @@ function init() {
 function showQuestion() {
     let question = questions[currentQuestion];
 
-    if (currentQuestion >= questions.length) {
+    if (currentQuestion >= questions.length) { // Show end screen
+        document.getElementById('tropy').style = '';
         document.getElementById('question-body').style = 'display: none';
         document.getElementById('show-result').style = '';
         showPoints();
-    } else {
+    } else { // Show next question
+
+        let percent = (currentQuestion + 1)/ questions.length;
+        percent = Math.round(percent * 100);
+        document.getElementById('progress-bar').innerHTML = `${percent}%`;
+        document.getElementById('progress-bar').style = `width: ${percent}%;`;
+
         document.getElementById('question-number').innerHTML = currentQuestion + 1;
         document.getElementById('questiontext').innerHTML = question['question'];
         document.getElementById('answer_1').innerHTML = question['answer_1'];
@@ -146,4 +153,8 @@ function resetAnswers() {
 function showPoints() {
     document.getElementById('points').innerHTML = rightAnswer;
     document.getElementById('all-points').innerHTML = questions.length;
+}
+
+function restart() {
+    
 }
