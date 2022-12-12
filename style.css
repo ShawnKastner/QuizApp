@@ -56,8 +56,6 @@ body {
     align-items: center;
     border-top: 1px solid rgba(0,0,0,0.4);
     padding-top: 12px;
-    position: relative;
-    top: 175px;
 }
 
 .quiz-answer:hover {
@@ -68,3 +66,13 @@ body {
 .bg-danger, .bg-success {
     color: white;
 }
+
+.width-100 {
+    width: 100%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+

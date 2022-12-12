@@ -81,6 +81,7 @@ let questions = [{
 
 let currentQuestion = 0;
 
+let rightAnswer = 0;
 
 function init() {
     document.getElementById('all-questions').innerHTML = questions.length;
@@ -91,27 +92,58 @@ function init() {
 function showQuestion() {
     let question = questions[currentQuestion];
 
-    document.getElementById('questiontext').innerHTML = question['question'];
-    document.getElementById('answer_1').innerHTML = question['answer_1'];
-    document.getElementById('answer_2').innerHTML = question['answer_2'];
-    document.getElementById('answer_3').innerHTML = question['answer_3'];
-    document.getElementById('answer_4').innerHTML = question['answer_4'];
+    if (currentQuestion >= questions.length) {
+        document.getElementById('question-body').style = 'display: none';
+        document.getElementById('show-result').style = '';
+        showPoints();
+    } else {
+        document.getElementById('question-number').innerHTML = currentQuestion + 1;
+        document.getElementById('questiontext').innerHTML = question['question'];
+        document.getElementById('answer_1').innerHTML = question['answer_1'];
+        document.getElementById('answer_2').innerHTML = question['answer_2'];
+        document.getElementById('answer_3').innerHTML = question['answer_3'];
+        document.getElementById('answer_4').innerHTML = question['answer_4'];
+    }
 }
 
 function answer(selection) {
     let question = questions[currentQuestion]; // greift auf die 0. frage zu
-    console.log('Selected answer is' , selection); //gibt die Variable selection und greift auf das angeklickte feld zu
+    console.log('Selected answer is', selection); //gibt die Variable selection und greift auf das angeklickte feld zu
     let selectedQuestionNumber = selection.slice(-1); //erstellt variable und nimmt von dem jeweiligem angeklickten feld den letzten buchstaben bzw die Nummer und kopiert sie in die Variable
     console.log('selectedQuestionNumber is', selectedQuestionNumber)//gibt die "einkopierte" Nummer aus der Console raus
     console.log('Current question is', question['right_answer']) //gibt die richtige Nummer der Antwort aus der console raus
 
     let idOfRightAnswer = `answer_${question['right_answer']}`;
 
-    if(selectedQuestionNumber == question['right_answer']) {
+    if (selectedQuestionNumber == question['right_answer']) {
         document.getElementById(selection).parentNode.classList.add('bg-success');
+        rightAnswer++;
     } else {
         document.getElementById(selection).parentNode.classList.add('bg-danger');
         document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
     }
     document.getElementById('next-button').disabled = false;
+}
+
+function nextQuestion() {
+    currentQuestion++; // erhört Variable z.B. von 0 auf 1
+    document.getElementById('next-button').disabled = true;
+    resetAnswers();
+    showQuestion();
+}
+
+function resetAnswers() {
+    document.getElementById('answer_1').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_1').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_2').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_2').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_3').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_3').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_4').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_4').parentNode.classList.remove('bg-danger');
+}
+
+function showPoints() {
+    document.getElementById('points').innerHTML = rightAnswer;
+    document.getElementById('all-points').innerHTML = questions.length;
 }

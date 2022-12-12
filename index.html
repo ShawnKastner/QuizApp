@@ -24,6 +24,7 @@
     <div class="container">
         <div class="card mb-3">
             <div class="row g-0">
+
                 <div class="logo col-md-4">
                     <img src="img/logo.png" class="img-fluid rounded-start">
                     <div class="category">
@@ -31,6 +32,19 @@
                     </div>
                 </div>
                 <div class="col-md-8">
+
+                    <div class="card-body" id="show-result" style="display: none">
+                        <div class="width-100 text-center">
+                            <img src="img/brain result.png" style="width:80px; height: 80px",>
+                        </div>
+                        <div class="width-100 text-center">
+                            <span><b>Abgeschlossen</b></span>
+                            <span>Du hast <b id="points">xxx</b> von <b id="all-points">xxx</b> Punkte</span>
+                        </div>
+                    </div>
+                
+
+                <div id="question-body">
                     <div class="card-body">
                         <h5 class="card-title" id="questiontext">Frage</h5>
                         <p class="card-text"></p>
@@ -59,15 +73,16 @@
                         </div>
                     </div>
                     <div class="question-footer">
-                        <span><b>1 </b>von <b id="all-questions">5 </b>Fragen</span>
-                        <button onclick="nextQuestion()" type="button" class="btn btn-primary" id="next-button" disabled>Nächste Frage</button>
+                        <span>
+                            <b id="question-number">1 </b>von <b id="all-questions">5 </b>Fragen
+                        </span>
+                        <button onclick="nextQuestion()" type="button" class="btn btn-primary" id="next-button"
+                            disabled>Nächste Frage</button>
                     </div>
-                       
                 </div>
             </div>
-
         </div>
-
+    </div>
     </div>
 
 </body>
