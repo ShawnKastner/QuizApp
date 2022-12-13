@@ -83,6 +83,7 @@ let currentQuestion = 0;
 let rightAnswer = 0;
 let AUDIO_SUCCESS = new Audio('sounds/right.mp3');
 let AUDIO_WRONG = new Audio('sounds/wrong.mp3');
+youClicked = false;
 
 function startScreen() {
     document.getElementById('start-game').style = '';
@@ -118,14 +119,20 @@ function answer(selection) {
     let selectedQuestionNumber = selection.slice(-1); //erstellt variable und nimmt von dem jeweiligem angeklickten feld den letzten buchstaben bzw die Nummer und kopiert sie in die Variable
 
     let idOfRightAnswer = `answer_${question['right_answer']}`;
+
+    if (youClicked == true) {
+        return;
+    }
     if (rightAnswerSelected(selectedQuestionNumber)) { //richtige Frage beantwortet
         document.getElementById(selection).parentNode.classList.add('bg-success');
         AUDIO_SUCCESS.play();
         rightAnswer++;
+        youClicked = true;
     } else {
         document.getElementById(selection).parentNode.classList.add('bg-danger');
         document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
         AUDIO_WRONG.play();
+        youClicked = true;
     }
     document.getElementById('next-button').disabled = false;
 }
@@ -140,6 +147,7 @@ function nextQuestion() {
     document.getElementById('next-button').disabled = true;
     resetAnswers();
     showQuestion();
+    youClicked = false;
 }
 
 function gameIsOver() {
