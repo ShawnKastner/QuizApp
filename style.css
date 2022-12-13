@@ -26,6 +26,7 @@ body {
 .card {
     width: 80%;
     border: unset !important;
+    border-radius: unset !important;
 }
 
 .quiz-card {
@@ -144,8 +145,11 @@ body {
             bottom: 0;
             width: 100%;
         }
+
+        .quiz-answer {
+            background-color: rgba(0,0,0,0.05);
+        }
     }
-    
 }
 
 

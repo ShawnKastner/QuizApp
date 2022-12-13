@@ -102,42 +102,23 @@ function init() {
 }
 
 function showQuestion() {
-    let question = questions[currentQuestion];
-
     if (currentQuestion == 9) {
         document.getElementById('next-button').innerHTML = 'Auswertung';
     }
-    if (currentQuestion >= questions.length) { // Show end screen
-        document.getElementById('tropy').style = '';
-        document.getElementById('question-body').style = 'display: none';
-        document.getElementById('show-result').style = '';
-        showPoints();
-    } else { // Show next question
-
-        let percent = (currentQuestion + 1) / questions.length;
-        percent = Math.round(percent * 100);
-        document.getElementById('progress-bar').innerHTML = `${percent}%`;
-        document.getElementById('progress-bar').style = `width: ${percent}%;`;
-
-        document.getElementById('question-number').innerHTML = currentQuestion + 1;
-        document.getElementById('questiontext').innerHTML = question['question'];
-        document.getElementById('answer_1').innerHTML = question['answer_1'];
-        document.getElementById('answer_2').innerHTML = question['answer_2'];
-        document.getElementById('answer_3').innerHTML = question['answer_3'];
-        document.getElementById('answer_4').innerHTML = question['answer_4'];
+    if (gameIsOver()) { 
+        showEndScreen();
+    } else {
+        updateProgressBar();
+        showNextQuestion();
     }
 }
 
 function answer(selection) {
     let question = questions[currentQuestion]; // greift auf die 0. frage zu
-    console.log('Selected answer is', selection); //gibt die Variable selection und greift auf das angeklickte feld zu
     let selectedQuestionNumber = selection.slice(-1); //erstellt variable und nimmt von dem jeweiligem angeklickten feld den letzten buchstaben bzw die Nummer und kopiert sie in die Variable
-    console.log('selectedQuestionNumber is', selectedQuestionNumber)//gibt die "einkopierte" Nummer aus der Console raus
-    console.log('Current question is', question['right_answer']) //gibt die richtige Nummer der Antwort aus der console raus
 
     let idOfRightAnswer = `answer_${question['right_answer']}`;
-
-    if (selectedQuestionNumber == question['right_answer']) {
+    if (rightAnswerSelected(selectedQuestionNumber)) { //richtige Frage beantwortet
         document.getElementById(selection).parentNode.classList.add('bg-success');
         AUDIO_SUCCESS.play();
         rightAnswer++;
@@ -149,11 +130,44 @@ function answer(selection) {
     document.getElementById('next-button').disabled = false;
 }
 
+function rightAnswerSelected(selectedQuestionNumber) {
+    let question = questions[currentQuestion];
+    return selectedQuestionNumber == question['right_answer'];
+}
+
 function nextQuestion() {
     currentQuestion++; // erhört Variable z.B. von 0 auf 1
     document.getElementById('next-button').disabled = true;
     resetAnswers();
     showQuestion();
+}
+
+function gameIsOver() {
+    return currentQuestion >= questions.length;
+}
+
+function showEndScreen() {
+    document.getElementById('tropy').style = '';
+    document.getElementById('question-body').style = 'display: none';
+    document.getElementById('show-result').style = '';
+    showPoints();
+}
+
+function updateProgressBar() {
+    let percent = (currentQuestion + 1) / questions.length;
+    percent = Math.round(percent * 100);
+    document.getElementById('progress-bar').innerHTML = `${percent}%`;
+    document.getElementById('progress-bar').style = `width: ${percent}%;`;
+}
+
+function showNextQuestion() {
+    let question = questions[currentQuestion];
+    document.getElementById('question-number').innerHTML = currentQuestion + 1;
+    document.getElementById('questiontext').innerHTML = question['question'];
+    document.getElementById('answer_1').innerHTML = question['answer_1'];
+    document.getElementById('answer_2').innerHTML = question['answer_2'];
+    document.getElementById('answer_3').innerHTML = question['answer_3'];
+    document.getElementById('answer_4').innerHTML = question['answer_4'];
 }
 
 function resetAnswers() {
