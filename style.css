@@ -102,4 +102,50 @@ body {
     background-color: #27355c !important;
 }
 
+@media screen {
+    @media (max-width: 450px) {
+        body {
+            background-image: none;
+        }
+
+        .card {
+            width: unset;
+        }
+
+        .card-responsive {
+            height: 100% !important;
+            width: 100%;
+            position: absolute !important;
+            top: 0;        
+        }
+
+        .row {
+            height: unset;
+        }
+
+        .row-responsive {
+            height: 100% !important;
+        }
+
+        .wolf-bg {
+            background-image: url(img/wolfbg.png);
+            background-size: cover;
+            color: #27355c;
+            font-size: 35px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 420px) {
+        .footer-responsive {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    }
+    
+}
+
 

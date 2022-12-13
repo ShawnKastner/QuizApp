@@ -80,8 +80,20 @@ let questions = [{
 }]
 
 let currentQuestion = 0;
-
 let rightAnswer = 0;
+let AUDIO_SUCCESS = new Audio('sounds/right.mp3');
+let AUDIO_WRONG = new Audio('sounds/wrong.mp3');
+
+function startScreen() {
+    document.getElementById('start-game').style = '';
+    document.getElementById('question-body').style = 'display: none';
+    init();
+}
+
+function startGame() {
+    document.getElementById('start-game').style = 'display: none';
+    document.getElementById('question-body').style = '';
+}
 
 function init() {
     document.getElementById('all-questions').innerHTML = questions.length;
@@ -102,7 +114,7 @@ function showQuestion() {
         showPoints();
     } else { // Show next question
 
-        let percent = (currentQuestion + 1)/ questions.length;
+        let percent = (currentQuestion + 1) / questions.length;
         percent = Math.round(percent * 100);
         document.getElementById('progress-bar').innerHTML = `${percent}%`;
         document.getElementById('progress-bar').style = `width: ${percent}%;`;
@@ -127,10 +139,12 @@ function answer(selection) {
 
     if (selectedQuestionNumber == question['right_answer']) {
         document.getElementById(selection).parentNode.classList.add('bg-success');
+        AUDIO_SUCCESS.play();
         rightAnswer++;
     } else {
         document.getElementById(selection).parentNode.classList.add('bg-danger');
         document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
+        AUDIO_WRONG.play();
     }
     document.getElementById('next-button').disabled = false;
 }
@@ -162,6 +176,7 @@ function restart() {
     document.getElementById('tropy').style = 'display: none'; // entfernt trophäe wieder
     document.getElementById('question-body').style = ''; // question body wieder anzeigen
     document.getElementById('show-result').style = 'display: none'; // Endergebnis ausblenden
+    document.getElementById('next-button').innerHTML = 'Nächste Frage'; // setzt den Button wieder von Auswertung zu nächste Frage zurück
 
     rightAnswer = 0;
     currentQuestion = 0;

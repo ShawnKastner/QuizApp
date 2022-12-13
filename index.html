@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QuizApp</title>
-    <link rel="icon" href="img/logo.png" type="image/x-icon">
+    <link rel="icon" href="img/logo3.png" type="image/x-icon">
 
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
@@ -20,17 +20,25 @@
 
 </head>
 
-<body onload="init()">
+<body onload="startScreen()">
     <div class="container">
-        <div class="card mb-3">
+        <div class="card mb-3 card-responsive">
             <div id="tropy" class="finished-tropy" style="display: none">
                 <img src="img/tropy.png" style="height: 270px">
             </div>
-            <div class="row g-0">
+            <div class="row g-0 row-responsive">
                 <div class="logo col-md-4">
                     <img src="img/logo3.png" class="img-fluid rounded-start">
                 </div>
                 <div class="col-md-8">
+                    <div id="start-game" class="height-60vh text-center space-between wolf-bg" style="display: none">
+                        <div>
+                            <h3>Willkommen zum <br>Hundequiz</h3>
+                        </div>
+                        <div>
+                            <button onclick="startGame()" type="button" class="btn btn-primary">Quiz starten</button>
+                        </div>
+                    </div>
 
                     <div class="card-body height-60vh space-between" id="show-result" style="display: none">
                         <div class="width-100 text-center">
@@ -77,16 +85,17 @@
                                 Antwort
                             </div>
                         </div>
+                        <div class="footer-responsive">
                         <div class="progress">
                             <div class="progress-bar" id="progress-bar" role="progressbar" style="width: 0%;">25%</div>
                         </div>
                         <div class="question-footer">
-
-                            <span>
-                                <b id="question-number">1 </b>von <b id="all-questions">5 </b>Fragen
-                            </span>
-                            <button onclick="nextQuestion()" type="button" class="btn btn-primary" id="next-button"
-                                disabled>Nächste Frage</button>
+                                <span>
+                                    <b id="question-number">1 </b>von <b id="all-questions">5 </b>Fragen
+                                </span>
+                                <button onclick="nextQuestion()" type="button" class="btn btn-primary" id="next-button"
+                                    disabled>Nächste Frage</button>
+                            </div>
                         </div>
                     </div>
                 </div>
