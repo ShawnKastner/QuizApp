@@ -92,6 +92,9 @@ function init() {
 function showQuestion() {
     let question = questions[currentQuestion];
 
+    if (currentQuestion == 9) {
+        document.getElementById('next-button').innerHTML = 'Auswertung';
+    }
     if (currentQuestion >= questions.length) { // Show end screen
         document.getElementById('tropy').style = '';
         document.getElementById('question-body').style = 'display: none';
@@ -156,5 +159,11 @@ function showPoints() {
 }
 
 function restart() {
-    
+    document.getElementById('tropy').style = 'display: none'; // entfernt trophäe wieder
+    document.getElementById('question-body').style = ''; // question body wieder anzeigen
+    document.getElementById('show-result').style = 'display: none'; // Endergebnis ausblenden
+
+    rightAnswer = 0;
+    currentQuestion = 0;
+    init();
 }

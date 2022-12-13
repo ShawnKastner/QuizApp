@@ -22,12 +22,11 @@
 
 <body onload="init()">
     <div class="container">
-        <div id="tropy" class="finished-tropy" style="display: none">
-            <img src="img/tropy.png" style="height: 270px">
-        </div>
         <div class="card mb-3">
+            <div id="tropy" class="finished-tropy" style="display: none">
+                <img src="img/tropy.png" style="height: 270px">
+            </div>
             <div class="row g-0">
-
                 <div class="logo col-md-4">
                     <img src="img/logo3.png" class="img-fluid rounded-start">
                 </div>
@@ -43,8 +42,9 @@
                         <div class="width-100 text-center">
                             <span>Du hast <b id="points">xxx</b> von <b id="all-points">xxx</b> Punkten erreicht!</span>
                         </div>
-                        <div>
-                            <button onclick="restart()" type="button" class="btn btn-primary btn-row" id="restart-button">Neustart</button>
+                        <div class="btn-row">
+                            <button onclick="restart()" type="button" class="btn btn-primary"
+                                id="restart-button">Neustart</button>
                         </div>
                     </div>
 
@@ -79,9 +79,9 @@
                         </div>
                         <div class="progress">
                             <div class="progress-bar" id="progress-bar" role="progressbar" style="width: 0%;">25%</div>
-                          </div>
+                        </div>
                         <div class="question-footer">
-                            
+
                             <span>
                                 <b id="question-number">1 </b>von <b id="all-questions">5 </b>Fragen
                             </span>

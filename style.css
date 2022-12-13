@@ -87,11 +87,19 @@ body {
 .finished-tropy {
     position: absolute;
     right: 0;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    opacity: 0.5;
 }
 
 .btn-row {
     display: flex;
     justify-content: center;
+}
+
+.progress-bar {
+    background-color: #27355c !important;
 }
 
 
