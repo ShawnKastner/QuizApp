@@ -71,7 +71,7 @@ let questions = [{
     'right_answer': 2,
 },
 {
-    'question': 'Welchen Treib des Hundes verwenden wir nicht für die Erziehung?',
+    'question': 'Welchen Trieb des Hundes verwenden wir nicht für die Erziehung?',
     'answer_1': 'Sexualtrieb',
     'answer_2': 'Spieltrieb',
     'answer_3': 'Beutetrieb',
@@ -124,15 +124,9 @@ function answer(selection) {
         return;
     }
     if (rightAnswerSelected(selectedQuestionNumber)) { //richtige Frage beantwortet
-        document.getElementById(selection).parentNode.classList.add('bg-success');
-        AUDIO_SUCCESS.play();
-        rightAnswer++;
-        youClicked = true;
+        clickedRightAnswer(selection);
     } else {
-        document.getElementById(selection).parentNode.classList.add('bg-danger');
-        document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
-        AUDIO_WRONG.play();
-        youClicked = true;
+        clickedWrongAnswer(selection, idOfRightAnswer);
     }
     document.getElementById('next-button').disabled = false;
 }
@@ -148,6 +142,20 @@ function nextQuestion() {
     resetAnswers();
     showQuestion();
     youClicked = false;
+}
+
+function clickedRightAnswer(selection) {
+    document.getElementById(selection).parentNode.classList.add('bg-success');
+    AUDIO_SUCCESS.play();
+    rightAnswer++;
+    youClicked = true;
+}
+
+function clickedWrongAnswer(selection, idOfRightAnswer) {
+    document.getElementById(selection).parentNode.classList.add('bg-danger');
+    document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
+    AUDIO_WRONG.play();
+    youClicked = true;
 }
 
 function gameIsOver() {
